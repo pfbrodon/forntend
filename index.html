@@ -37,8 +37,8 @@
                                     <th scope="col">Descripcion</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">P Unitario</th>
-
                                     <th scope="col">P Publico</th>
+                                    <th scope="col">Administracion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,9 +50,6 @@
                                     <td>{{producto.cantidad}}</td>
                                     <td>{{producto.precioUnit}}</td>
                                     <td>{{producto.precioVPublico}}</td>
-                                    <td>
-                                        <img width="60" :src="producto.imagen" :alt="producto.nombre">
-                                    </td>
                                     <td>
                                         <a class="btn btn-primary" :href="'producto_update.html?id='+ producto.id">Editar</a>
                                         <button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)">Eliminar</button>
