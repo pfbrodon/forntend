@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restar Productos</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="producto in productos" :key="producto.id">
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>
+                        <button @click="restarProducto(producto.id)">Restar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                productos: [],
+            },
+            mounted() {
+                this.obtenerProductos();
+            },
+            methods: {
+                async obtenerProductos() {
+                    try {
+                        const respuesta = await fetch('https://pfbrodon.pythonanywhere.com/productos');
+                        const datos = await respuesta.json();
+                        this.productos = datos;
+                    } catch (error) {
+                        console.error('Error al obtener productos:', error);
+                    }
+                },
+                async restarProducto(idProducto) {
+                    const producto = this.productos.find(p => p.id === idProducto);
+
+                    if (producto && producto.cantidad > 0) {
+                        try {
+                            const respuesta = await fetch(`https://pfbrodon.pythonanywhere.com/restar_producto/${idProducto}`, {
+                                method: 'PUT',
+                            });
+
+                            if (respuesta.ok) {
+                                // Actualiza la cantidad en la interfaz de usuario
+                                producto.cantidad -= 1;
+                            } else {
+                                console.error('Error al restar producto:', respuesta.statusText);
+                            }
+                        } catch (error) {
+                            console.error('Error al restar producto:', error);
+                        }
+                    } else {
+                        alert('La cantidad no puede ser menor que 0.');
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

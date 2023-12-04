@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>CRUD Productos</title>
+    <title>Cliente</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -15,9 +15,7 @@
     <main>
         <div id="app" class="container">
             <h1>Productos</h1>
-            <br>
-            <a class="btn btn-primary" href="producto_nuevo.html">Nuevo</a>
-            <br><br>
+            <br> <br><br>
             <div v-if="error">
                 <p>Lo sentimos , ........</p>
             </div>
@@ -51,8 +49,7 @@
                                     <td>{{producto.precioUnit}}</td>
                                     <td>{{producto.precioVPublico}}</td>
                                     <td>
-                                        <a class="btn btn-primary" :href="'producto_update.html?id='+ producto.id">Editar</a>
-                                        <button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)">Eliminar</button>
+                                        <button type="button" class="btn btn-danger" v-on:click="restarEnUno(producto.id)">AGREGAR</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -72,6 +69,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!--Link de VUE-->
     <script src="./js/productos.js"></script>
+
 </body>
 
 </html>

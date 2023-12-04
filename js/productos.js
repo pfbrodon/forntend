@@ -3,7 +3,7 @@ createApp({
     data() {
         return {
             productos: [],
-            //url:'http://localhost:5000/productos', 
+            //url: 'http://localhost:5000/productos',
             // si el backend esta corriendo local  usar localhost 5000(si no lo subieron a pythonanywhere)
             url: 'https://pfbrodon.pythonanywhere.com/productos', // si ya lo subieron a pythonanywhere
             error: false,
@@ -30,6 +30,22 @@ createApp({
                     console.error(err);
                     this.error = true
                 })
+        },
+        restarEnUno(id) {
+            const producto = this.productos.find(item => item.id === id);
+
+            if (producto && producto.cantidad > 0) {
+                producto.cantidad -= 1;
+
+                // Aquí puedes realizar alguna acción adicional después de restar en 1,
+                // como guardar el cambio en el backend mediante una llamada a la API.
+                // Puedes agregar la lógica aquí según tus necesidades.
+
+                // Por ejemplo:
+                this.actualizarCantidadEnBackend(id, producto.cantidad);
+            } else {
+                alert('La cantidad no puede ser menor que 0.');
+            }
         },
         eliminar(id) {
             const url = this.url + '/' + id;
@@ -68,6 +84,7 @@ createApp({
                     alert("Error al Grabar") // puedo mostrar el error tambien
                 })
         }
+
     },
     created() {
         this.fetchData(this.url)
