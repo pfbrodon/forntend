@@ -3,9 +3,9 @@ createApp({
     data() {
         return {
             productos: [],
-            //url: 'http://localhost:5000/productos',
+            url: 'http://localhost:5000/productos',
             // si el backend esta corriendo local  usar localhost 5000(si no lo subieron a pythonanywhere)
-            url: 'https://pfbrodon.pythonanywhere.com/productos', // si ya lo subieron a pythonanywhere
+            //url: 'https://pfbrodon.pythonanywhere.com/productos', // si ya lo subieron a pythonanywhere
             error: false,
             cargando: true,
             /*atributos para el guardar los valores del formulario */
