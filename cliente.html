@@ -49,7 +49,8 @@
                                     <td>{{producto.precioUnit}}</td>
                                     <td>{{producto.precioVPublico}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" v-on:click="restarEnUno(producto.id)">AGREGAR</button>
+                                        <button type="button" class="btn btn-danger" v-on:click="restarEnUno(producto.id)">-</button>
+                                        <button type="button" class="btn btn-danger" v-on:click="sumarEnUno(producto.id)">+</button>
                                     </td>
                                 </tr>
                             </tbody>
